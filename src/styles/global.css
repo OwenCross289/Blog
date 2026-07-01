@@ -118,6 +118,12 @@
 	--selection-text: var(--void);
 }
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;

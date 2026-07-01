@@ -27,8 +27,53 @@ const THEME_OPTIONS = [
 							aria-checked={value === 'system' ? 'true' : 'false'}
 							tabindex={value === 'system' ? 0 : -1}
 							data-theme-option={value}
+							aria-label={label}
 						>
-							{label}
+							<span class="sr-only">{label}</span>
+							{
+								value === 'system' ? (
+									<svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
+										<rect
+											x="2.25"
+											y="3"
+											width="11.5"
+											height="8"
+											rx="1.5"
+											stroke="currentColor"
+											stroke-width="1.5"
+										></rect>
+										<path
+											d="M6 13h4M8 11v2"
+											stroke="currentColor"
+											stroke-width="1.5"
+											stroke-linecap="round"
+										></path>
+									</svg>
+								) : value === 'light' ? (
+									<svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
+										<circle
+											cx="8"
+											cy="8"
+											r="2.5"
+											stroke="currentColor"
+											stroke-width="1.5"
+										></circle>
+										<path
+											d="M8 1.75v1.5M8 12.75v1.5M3.23 3.23l1.06 1.06M11.71 11.71l1.06 1.06M1.75 8h1.5M12.75 8h1.5M3.23 12.77l1.06-1.06M11.71 4.29l1.06-1.06"
+											stroke="currentColor"
+											stroke-width="1.5"
+											stroke-linecap="round"
+										></path>
+									</svg>
+								) : (
+									<svg viewBox="0 0 16 16" aria-hidden="true">
+										<path
+											fill="currentColor"
+											d="M10.25 2.25a5.75 5.75 0 1 0 3.5 10.3A6.5 6.5 0 1 1 10.25 2.25Z"
+										></path>
+									</svg>
+								)
+							}
 						</button>
 					))
 				}
@@ -194,16 +239,18 @@ const THEME_OPTIONS = [
 		border: none;
 		background: transparent;
 		cursor: pointer;
-		font-family: var(--font-mono);
-		font-size: 0.68rem;
-		font-weight: 500;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
 		color: rgb(var(--muted));
-		padding: 0.5em 0.7em;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5em;
 		transition:
 			background-color 0.15s ease,
 			color 0.15s ease;
+	}
+	.theme-switch button svg {
+		width: 1rem;
+		height: 1rem;
 	}
 	.theme-switch button[aria-checked='true'] {
 		background: rgb(var(--accent));
@@ -211,6 +258,10 @@ const THEME_OPTIONS = [
 	}
 	.theme-switch button:hover:not([aria-checked='true']) {
 		color: rgb(var(--heading));
+	}
+	.theme-switch button:focus-visible {
+		outline: 2px solid rgb(var(--accent));
+		outline-offset: 2px;
 	}
 	.social-links,
 	.social-links a {

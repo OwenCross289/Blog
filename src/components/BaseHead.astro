@@ -20,6 +20,65 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
+
+<!--
+	Theme boot: resolves System / Light / Dark before first paint so there is no
+	flash of the wrong theme. Exposes window.__theme so the header's switch can
+	reuse the same resolve/apply/persist logic instead of duplicating it.
+-->
+<script is:inline>
+	(function () {
+		var STORAGE_KEY = 'oc-theme';
+		var root = document.documentElement;
+		var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+		function systemTheme() {
+			return media.matches ? 'dark' : 'light';
+		}
+
+		function resolve(preference) {
+			return preference === 'light' || preference === 'dark' ? preference : systemTheme();
+		}
+
+		function apply(preference) {
+			var resolved = resolve(preference);
+			root.setAttribute('data-theme-preference', preference);
+			root.setAttribute('data-theme', resolved);
+			return resolved;
+		}
+
+		function get() {
+			var stored = null;
+			try {
+				stored = localStorage.getItem(STORAGE_KEY);
+			} catch (error) {
+				stored = null;
+			}
+			return stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+		}
+
+		function set(preference) {
+			try {
+				localStorage.setItem(STORAGE_KEY, preference);
+			} catch (error) {
+				/* storage unavailable; theme still applies for this page view */
+			}
+			return apply(preference);
+		}
+
+		window.__theme = { apply: apply, set: set, get: get, systemTheme: systemTheme };
+
+		apply(get());
+
+		media.addEventListener('change', function () {
+			if (get() === 'system') apply('system');
+		});
+	})();
+</script>
+<meta name="color-scheme" content="light dark" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#E9EBEA" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#14161A" />
+
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
@@ -33,6 +92,8 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <Font cssVariable="--font-atkinson" preload />
+<Font cssVariable="--font-display" preload />
+<Font cssVariable="--font-mono" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

@@ -1,6 +1,12 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+
+const THEME_OPTIONS = [
+	{ value: 'system', label: 'System' },
+	{ value: 'light', label: 'Light' },
+	{ value: 'dark', label: 'Dark' },
+] as const;
 ---
 
 <header>
@@ -11,75 +17,225 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
-		<div class="social-links">
-			<a href="https://x.com/OwenCrossssss" target="_blank" rel="noreferrer">
-				<span class="sr-only">Follow Owen Cross on X</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-					></path></svg
-				>
-			</a>
-			<a href="https://github.com/OwenCross289" target="_blank" rel="noreferrer">
-				<span class="sr-only">Go to Owen Cross's GitHub profile</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-					><path
-						fill="currentColor"
-						d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-					></path></svg
-				>
-			</a>
-			<a href="https://www.linkedin.com/in/owenphilipcross/" target="_blank" rel="noreferrer">
-				<span class="sr-only">Go to Owen Cross's LinkedIn profile</span>
-				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-					<path
-						fill="currentColor"
-						d="M1.146 5.442H4.11V15H1.146zM2.628 0C1.458 0 .508.95.508 2.12c0 1.168.948 2.12 2.097 2.12h.024c1.194 0 2.12-.952 2.12-2.12C4.726.95 3.822 0 2.628 0zM5.967 5.442h2.84v1.304h.04c.396-.75 1.364-1.543 2.809-1.543 3.004 0 3.558 1.978 3.558 4.55V15h-2.962V10.1c0-1.17-.02-2.675-1.63-2.675-1.632 0-1.882 1.274-1.882 2.59V15H5.967z"
-					></path>
-				</svg>
-			</a>
+		<div class="chrome">
+			<div class="theme-switch" data-theme-switch role="radiogroup" aria-label="Color theme">
+				{
+					THEME_OPTIONS.map(({ value, label }) => (
+						<button
+							type="button"
+							role="radio"
+							aria-checked={value === 'system' ? 'true' : 'false'}
+							tabindex={value === 'system' ? 0 : -1}
+							data-theme-option={value}
+						>
+							{label}
+						</button>
+					))
+				}
+			</div>
+			<div class="social-links">
+				<a href="https://x.com/OwenCrossssss" target="_blank" rel="noreferrer">
+					<span class="sr-only">Follow Owen Cross on X</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+						><path
+							fill="currentColor"
+							d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+						></path></svg
+					>
+				</a>
+				<a href="https://github.com/OwenCross289" target="_blank" rel="noreferrer">
+					<span class="sr-only">Go to Owen Cross's GitHub profile</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+						><path
+							fill="currentColor"
+							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+						></path></svg
+					>
+				</a>
+				<a href="https://www.linkedin.com/in/owenphilipcross/" target="_blank" rel="noreferrer">
+					<span class="sr-only">Go to Owen Cross's LinkedIn profile</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28">
+						<path
+							fill="currentColor"
+							d="M1.146 5.442H4.11V15H1.146zM2.628 0C1.458 0 .508.95.508 2.12c0 1.168.948 2.12 2.097 2.12h.024c1.194 0 2.12-.952 2.12-2.12C4.726.95 3.822 0 2.628 0zM5.967 5.442h2.84v1.304h.04c.396-.75 1.364-1.543 2.809-1.543 3.004 0 3.558 1.978 3.558 4.55V15h-2.962V10.1c0-1.17-.02-2.675-1.63-2.675-1.632 0-1.882 1.274-1.882 2.59V15H5.967z"
+						></path>
+					</svg>
+				</a>
+			</div>
 		</div>
 	</nav>
+	<div class="seam" role="presentation"></div>
 </header>
+<script>
+	const group = document.querySelector('[data-theme-switch]');
+
+	if (group instanceof HTMLElement) {
+		const options = Array.from(group.querySelectorAll('[data-theme-option]'));
+
+		const sync = (preference: ThemePreference) => {
+			for (const option of options) {
+				const isActive = option.getAttribute('data-theme-option') === preference;
+				option.setAttribute('aria-checked', String(isActive));
+				option.setAttribute('tabindex', isActive ? '0' : '-1');
+			}
+		};
+
+		const choose = (preference: ThemePreference) => {
+			window.__theme?.set(preference);
+			sync(preference);
+		};
+
+		sync(window.__theme?.get() ?? 'system');
+
+		options.forEach((option, index) => {
+			option.addEventListener('click', () => {
+				choose((option.getAttribute('data-theme-option') as ThemePreference | null) ?? 'system');
+			});
+
+			option.addEventListener('keydown', (event) => {
+				const keyboardEvent = event as KeyboardEvent;
+				const key = keyboardEvent.key;
+				if (key !== 'ArrowRight' && key !== 'ArrowLeft' && key !== 'Home' && key !== 'End') return;
+				keyboardEvent.preventDefault();
+
+				let nextIndex = index;
+				if (key === 'ArrowRight') nextIndex = (index + 1) % options.length;
+				if (key === 'ArrowLeft') nextIndex = (index - 1 + options.length) % options.length;
+				if (key === 'Home') nextIndex = 0;
+				if (key === 'End') nextIndex = options.length - 1;
+
+				const next = options[nextIndex] as HTMLElement;
+				next.focus();
+				choose((next.getAttribute('data-theme-option') as ThemePreference | null) ?? 'system');
+			});
+		});
+
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+			if ((window.__theme?.get() ?? 'system') === 'system') sync('system');
+		});
+	}
+</script>
 <style>
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: rgb(var(--surface));
+		border-bottom: 1px solid rgb(var(--border));
+		box-shadow: 0 2px 10px rgb(var(--shadow-rgb) / 8%);
 	}
 	h2 {
 		margin: 0;
 		font-size: 1em;
 	}
-
-	h2 a,
-	h2 a.active {
+	h2 a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
 		text-decoration: none;
+		color: rgb(var(--heading));
+		font-family: var(--font-display), var(--font-atkinson);
+		font-weight: 700;
+		font-size: 1.15rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+	h2 a::before {
+		content: '';
+		width: 8px;
+		height: 8px;
+		background: rgb(var(--accent));
 	}
 	nav {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		gap: 1em;
+		flex-wrap: wrap;
+		padding: 0.4em 0;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
+	.internal-links {
+		display: flex;
 	}
-	nav a.active {
+	nav :global(a) {
+		padding: 0.9em 0.7em;
+		color: rgb(var(--muted));
+		font-family: var(--font-display), var(--font-atkinson);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		font-size: 0.92rem;
+		border-bottom: 3px solid transparent;
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		transition:
+			color 0.15s ease,
+			border-color 0.15s ease;
+	}
+	nav :global(a:hover) {
+		color: rgb(var(--heading));
+	}
+	nav :global(a.active) {
+		color: rgb(var(--heading));
+		border-bottom-color: rgb(var(--accent));
+	}
+	.chrome {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+	}
+	.theme-switch {
+		display: inline-flex;
+		border: 1px solid rgb(var(--border));
+		background: rgb(var(--surface-alt));
+		padding: 3px;
+		gap: 2px;
+	}
+	.theme-switch button {
+		appearance: none;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-family: var(--font-mono);
+		font-size: 0.68rem;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgb(var(--muted));
+		padding: 0.5em 0.7em;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
+	}
+	.theme-switch button[aria-checked='true'] {
+		background: rgb(var(--accent));
+		color: rgb(var(--accent-contrast));
+	}
+	.theme-switch button:hover:not([aria-checked='true']) {
+		color: rgb(var(--heading));
 	}
 	.social-links,
 	.social-links a {
 		display: flex;
 	}
+	.social-links a {
+		color: rgb(var(--muted));
+	}
+	.social-links a:hover,
+	.social-links a:focus-visible {
+		color: rgb(var(--accent));
+	}
 	@media (max-width: 720px) {
 		.social-links {
 			display: none;
+		}
+	}
+	@media (max-width: 540px) {
+		nav {
+			justify-content: center;
+			text-align: center;
+		}
+		.chrome {
+			width: 100%;
+			justify-content: center;
 		}
 	}
 </style>

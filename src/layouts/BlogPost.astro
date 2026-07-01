@@ -26,7 +26,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.hero-image img {
 				display: block;
 				margin: 0 auto;
-				border-radius: 12px;
+				border-radius: 0;
+				clip-path: polygon(36px 0, 100% 0, 100% 100%, 0 100%, 0 36px);
 				box-shadow: var(--box-shadow);
 			}
 			.prose {
@@ -34,7 +35,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				max-width: calc(100% - 2em);
 				margin: auto;
 				padding: 1em;
-				color: rgb(var(--gray-dark));
+				color: rgb(var(--text));
 			}
 			.title {
 				margin-bottom: 1em;
@@ -42,12 +43,19 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				text-align: center;
 				line-height: 1;
 			}
+			.title .seam {
+				margin-bottom: 1.5em;
+			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
 			.date {
 				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
+				color: rgb(var(--muted));
+				font-family: var(--font-mono);
+				font-size: 0.8rem;
+				letter-spacing: 0.06em;
+				text-transform: uppercase;
 			}
 			.last-updated-on {
 				font-style: italic;
@@ -64,6 +72,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				</div>
 				<div class="prose">
 					<div class="title">
+						<div class="seam" aria-hidden="true"></div>
 						<div class="date">
 							<FormattedDate date={pubDate} />
 							{

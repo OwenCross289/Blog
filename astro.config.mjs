@@ -31,5 +31,27 @@ export default defineConfig({
 				],
 			},
 		},
+		{
+			// Display face for headings/nav/brand: condensed, technical, used with restraint.
+			provider: fontProviders.google(),
+			name: 'Rajdhani',
+			cssVariable: '--font-display',
+			weights: [500, 600, 700],
+			styles: ['normal'],
+			subsets: ['latin'],
+			fallbacks: ['system-ui', 'sans-serif'],
+			display: 'swap',
+		},
+		{
+			// Utility face for meta/labels/data: the "stenciled placard" role.
+			provider: fontProviders.google(),
+			name: 'JetBrains Mono',
+			cssVariable: '--font-mono',
+			weights: [400, 500, 600],
+			styles: ['normal'],
+			subsets: ['latin'],
+			fallbacks: ['ui-monospace', 'monospace'],
+			display: 'swap',
+		},
 	],
 });

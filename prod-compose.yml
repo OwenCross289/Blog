@@ -1,6 +1,5 @@
 services:
   blog:
     image: ghcr.io/owencross289/blog:latest
-    pull_policy: always
     ports:
       - "80:80"

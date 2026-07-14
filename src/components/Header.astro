@@ -12,13 +12,31 @@ const THEME_OPTIONS = [
 <header>
 	<nav>
 		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
-		</div>
-		<div class="chrome">
-			<div class="theme-switch" data-theme-switch role="radiogroup" aria-label="Color theme">
+		<button
+			type="button"
+			class="menu-toggle"
+			data-menu-toggle
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+		>
+			<span class="sr-only" data-menu-label>Open menu</span>
+			<svg viewBox="0 0 24 24" aria-hidden="true" fill="none">
+				<path
+					d="M4 7h16M4 12h16M4 17h16"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="square"
+				></path>
+			</svg>
+		</button>
+		<div class="menu-panel" id="mobile-menu" data-menu-panel>
+			<div class="internal-links">
+				<HeaderLink href="/">Home</HeaderLink>
+				<HeaderLink href="/blog">Blog</HeaderLink>
+				<HeaderLink href="/about">About</HeaderLink>
+			</div>
+			<div class="chrome">
+				<div class="theme-switch" data-theme-switch role="radiogroup" aria-label="Color theme">
 				{
 					THEME_OPTIONS.map(({ value, label }) => (
 						<button
@@ -77,41 +95,87 @@ const THEME_OPTIONS = [
 						</button>
 					))
 				}
-			</div>
-			<div class="social-links">
-				<a href="https://x.com/OwenCrossssss" target="_blank" rel="noreferrer">
-					<span class="sr-only">Follow Owen Cross on X</span>
-					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
-						><path
-							fill="currentColor"
-							d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
-						></path></svg
+				</div>
+				<div class="social-links">
+					<a href="https://x.com/OwenCrossssss" target="_blank" rel="noreferrer">
+						<span class="sr-only">Follow Owen Cross on X</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+							><path
+								fill="currentColor"
+								d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"
+							></path></svg
+						>
+					</a>
+					<a href="https://github.com/OwenCross289" target="_blank" rel="noreferrer">
+						<span class="sr-only">Go to Owen Cross's GitHub profile</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
+							><path
+								fill="currentColor"
+								d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+							></path></svg
+						>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/owenphilipcross/"
+						target="_blank"
+						rel="noreferrer"
 					>
-				</a>
-				<a href="https://github.com/OwenCross289" target="_blank" rel="noreferrer">
-					<span class="sr-only">Go to Owen Cross's GitHub profile</span>
-					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28"
-						><path
-							fill="currentColor"
-							d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-						></path></svg
-					>
-				</a>
-				<a href="https://www.linkedin.com/in/owenphilipcross/" target="_blank" rel="noreferrer">
-					<span class="sr-only">Go to Owen Cross's LinkedIn profile</span>
-					<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28">
-						<path
-							fill="currentColor"
-							d="M1.146 5.442H4.11V15H1.146zM2.628 0C1.458 0 .508.95.508 2.12c0 1.168.948 2.12 2.097 2.12h.024c1.194 0 2.12-.952 2.12-2.12C4.726.95 3.822 0 2.628 0zM5.967 5.442h2.84v1.304h.04c.396-.75 1.364-1.543 2.809-1.543 3.004 0 3.558 1.978 3.558 4.55V15h-2.962V10.1c0-1.17-.02-2.675-1.63-2.675-1.632 0-1.882 1.274-1.882 2.59V15H5.967z"
-						></path>
-					</svg>
-				</a>
+						<span class="sr-only">Go to Owen Cross's LinkedIn profile</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28">
+							<path
+								fill="currentColor"
+								d="M1.146 5.442H4.11V15H1.146zM2.628 0C1.458 0 .508.95.508 2.12c0 1.168.948 2.12 2.097 2.12h.024c1.194 0 2.12-.952 2.12-2.12C4.726.95 3.822 0 2.628 0zM5.967 5.442h2.84v1.304h.04c.396-.75 1.364-1.543 2.809-1.543 3.004 0 3.558 1.978 3.558 4.55V15h-2.962V10.1c0-1.17-.02-2.675-1.63-2.675-1.632 0-1.882 1.274-1.882 2.59V15H5.967z"
+							></path>
+						</svg>
+					</a>
+				</div>
 			</div>
 		</div>
 	</nav>
 	<div class="seam" role="presentation"></div>
 </header>
 <script>
+	const menuToggle = document.querySelector('[data-menu-toggle]');
+	const menuPanel = document.querySelector('[data-menu-panel]');
+	const menuLabel = document.querySelector('[data-menu-label]');
+
+	if (
+		menuToggle instanceof HTMLButtonElement &&
+		menuPanel instanceof HTMLElement &&
+		menuLabel instanceof HTMLElement
+	) {
+		const mobileMedia = window.matchMedia('(max-width: 640px)');
+
+		const setMenuOpen = (open: boolean) => {
+			menuToggle.setAttribute('aria-expanded', String(open));
+			menuPanel.toggleAttribute('data-open', open);
+			menuLabel.textContent = open ? 'Close menu' : 'Open menu';
+		};
+
+		const isMenuOpen = () => menuToggle.getAttribute('aria-expanded') === 'true';
+
+		menuToggle.addEventListener('click', () => {
+			setMenuOpen(!isMenuOpen());
+		});
+
+		menuPanel.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', () => setMenuOpen(false));
+		});
+
+		document.addEventListener('pointerdown', (event) => {
+			if (!isMenuOpen() || !(event.target instanceof Node)) return;
+			if (!menuToggle.closest('header')?.contains(event.target)) setMenuOpen(false);
+		});
+
+		document.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape' || !isMenuOpen()) return;
+			setMenuOpen(false);
+			menuToggle.focus();
+		});
+
+		mobileMedia.addEventListener('change', () => setMenuOpen(false));
+	}
+
 	const group = document.querySelector('[data-theme-switch]');
 
 	if (group instanceof HTMLElement) {
@@ -162,6 +226,9 @@ const THEME_OPTIONS = [
 </script>
 <style>
 	header {
+		position: sticky;
+		top: 0;
+		z-index: 10;
 		margin: 0;
 		padding: 0 1em;
 		background: rgb(var(--surface));
@@ -195,8 +262,18 @@ const THEME_OPTIONS = [
 		align-items: center;
 		justify-content: space-between;
 		gap: 1em;
-		flex-wrap: wrap;
 		padding: 0.4em 0;
+	}
+	.menu-toggle {
+		display: none;
+	}
+	.menu-panel {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+		flex: 1;
+		min-width: 0;
 	}
 	.internal-links {
 		display: flex;
@@ -279,14 +356,85 @@ const THEME_OPTIONS = [
 			display: none;
 		}
 	}
-	@media (max-width: 540px) {
+	@media (max-width: 640px) {
+		header {
+			padding: 0 0.75em;
+		}
 		nav {
+			gap: 0.75rem;
+			padding: 0.375rem 0 0.125rem;
+		}
+		h2 a {
+			min-height: 44px;
+			padding: 0;
+		}
+		.menu-toggle {
+			appearance: none;
+			display: inline-flex;
+			align-items: center;
 			justify-content: center;
+			width: 44px;
+			height: 44px;
+			padding: 0;
+			margin-left: auto;
+			border: none;
+			background: transparent;
+			color: rgb(var(--muted));
+			cursor: pointer;
+			transition: color 0.15s ease;
+		}
+		.menu-toggle:hover,
+		.menu-toggle:focus-visible,
+		.menu-toggle[aria-expanded='true'] {
+			background: transparent;
+			color: rgb(var(--accent));
+		}
+		.menu-toggle:focus-visible {
+			outline: none;
+		}
+		.menu-toggle svg {
+			width: 22px;
+			height: 22px;
+		}
+		.menu-panel {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			display: none;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.75rem;
+			padding: 0.5rem 0.75rem 0.75rem;
+			background: rgb(var(--surface));
+			border-bottom: 1px solid rgb(var(--border));
+			box-shadow: 0 10px 24px rgb(var(--shadow-rgb) / 20%);
+		}
+		.menu-panel[data-open] {
+			display: flex;
+		}
+		.internal-links {
+			flex-direction: column;
+			width: 100%;
 			text-align: center;
+		}
+		.internal-links :global(a) {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 48px;
+			padding: 0.65rem 1rem;
 		}
 		.chrome {
 			width: 100%;
 			justify-content: center;
+			padding-top: 0.25rem;
+			border-top: 1px solid rgb(var(--border));
+		}
+		.theme-switch button {
+			width: 44px;
+			height: 44px;
+			padding: 0;
 		}
 	}
 </style>

@@ -139,9 +139,14 @@
 
 html {
 	scroll-behavior: smooth;
+	min-height: 100%;
 }
 
 body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100dvh;
 	font-family: var(--font-atkinson);
 	margin: 0;
 	padding: 0;
@@ -164,6 +169,7 @@ body {
 		color 0.2s ease;
 }
 main {
+	flex: 1 0 auto;
 	width: 720px;
 	max-width: calc(100% - 2em);
 	margin: auto;

@@ -3,7 +3,9 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Owen Cross. All rights reserved.
+	<span class="copyright">
+		&copy; {today.getFullYear()} Owen Cross.<span class="rights"> All rights reserved.</span>
+	</span>
 	<div class="social-links">
 		<a href="https://x.com/OwenCrossssss" target="_blank" rel="noreferrer">
 			<span class="sr-only">Follow Owen Cross on X</span>
@@ -36,29 +38,56 @@ const today = new Date();
 </footer>
 <style>
 	footer {
-		padding: 2.5em 1em 6em 1em;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		padding: 1.5rem max(1rem, env(safe-area-inset-right))
+			max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 		background: rgb(var(--surface));
 		border-top: 1px solid rgb(var(--border));
 		color: rgb(var(--muted));
-		text-align: center;
+		text-align: left;
 		font-family: var(--font-mono);
 		font-size: 0.8rem;
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
+		white-space: nowrap;
 	}
 	.social-links {
 		display: flex;
-		justify-content: center;
-		gap: 1.25em;
-		margin-top: 1.25em;
+		align-items: center;
+		gap: 0.5rem;
+		flex-shrink: 0;
 	}
 	.social-links a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
 		text-decoration: none;
 		color: rgb(var(--muted));
 		transition: color 0.15s ease;
 	}
+	.social-links svg {
+		width: 1.75rem;
+		height: 1.75rem;
+	}
 	.social-links a:hover,
 	.social-links a:focus-visible {
 		color: rgb(var(--accent));
+	}
+	@media (max-width: 640px) {
+		footer {
+			gap: 0.75rem;
+			padding-top: 1rem;
+			padding-bottom: max(1rem, env(safe-area-inset-bottom));
+			font-size: 0.7rem;
+			letter-spacing: 0.03em;
+		}
+		.rights {
+			display: none;
+		}
 	}
 </style>
